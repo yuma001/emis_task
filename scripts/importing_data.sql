@@ -89,7 +89,7 @@ CREATE TABLE observation (
 	, range_upper numeric
 	, readv2_code varchar(50)
 	, recorded_date datetime
-    , registration_guid nvarchar(MAX)
+	, registration_guid nvarchar(MAX)
 	, regular_and_current_active_flag varchar(5)
 	, regular_current_active_and_inactive_flag varchar(5)
 	, regular_patient_flag varchar(5)
