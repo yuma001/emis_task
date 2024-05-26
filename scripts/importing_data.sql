@@ -4,7 +4,7 @@ Importing all csv data into the database.
 */
 
 -- Patient table
-DROP TABLE IF EXISTS patient
+DROP TABLE IF EXISTS patient;
 CREATE TABLE patient (
 	  age int
 	, postcode varchar(10)
@@ -16,7 +16,7 @@ CREATE TABLE patient (
 	, patient_id int
 	, gender varchar(20)
 	, PRIMARY KEY (patient_id)
-	)
+	);
 
 BULK INSERT patient 
 FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\patient.csv'
@@ -26,20 +26,20 @@ WITH (
 	, ROWTERMINATOR = '0x0a'
 	, KEEPNULLS
 	, FORMAT = 'csv'
-	)
+	);
 
 -- SELECT COUNT(*), COUNT(patient_id) FROM patient	-- Checking count of rows and whether it matches primary key
 -- SELECT TOP 10 * FROM patient     -- Checking data
 
 -- Clinical codes table
-DROP TABLE IF EXISTS clinical_codes
+DROP TABLE IF EXISTS clinical_codes;
 CREATE TABLE clinical_codes (
 	  refset_simple_id bigint
 	, parent_code_id bigint
 	, code_id bigint
 	, snomed_concept_id bigint
 	, emis_term nvarchar(200)
-	)
+	);
 
 BULK INSERT clinical_codes 
 FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\clinical_codes.csv'
@@ -49,14 +49,14 @@ WITH (
 	, ROWTERMINATOR = '0x0a'
 	, KEEPNULLS
 	, FORMAT = 'csv'
-	)
+	);
 
 -- SELECT count(*) FROM clinical_codes
 -- SELECT TOP 10 * FROM clinical_codes
 
 
 -- Observation table
-DROP TABLE IF EXISTS observation
+DROP TABLE IF EXISTS observation;
 CREATE TABLE observation (
 	  abnormal varchar(50)
 	, emis_code_id bigint
@@ -108,7 +108,7 @@ CREATE TABLE observation (
 	, user_selected varchar(50)
 	, numericvalue numeric
 	, value_pq_2 varchar(50)
-	)
+	);
 
 BULK INSERT observation
 FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation.csv'  -- Adding all files from observation folder
@@ -118,27 +118,27 @@ WITH (
 	, ROWTERMINATOR = '0x0a'
 	, KEEPNULLS
 	, FORMAT = 'csv'
-	)
+	);
 
 -- SELECT count(*) FROM observation --23186, 23073, 23073, 23043, 23151, 23167, 23152, 22990, 22965, 22978, 22918, 22076 - TOTAL 275772
 --  SELECT TOP 10 * FROM observation
 
 -- Adding the rest of the observation files
-BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_2.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_2.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_4.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_5.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_6.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_7.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_8.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_9.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_10.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_11.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_12.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
+BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_2.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_2.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_4.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_5.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_6.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_7.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_8.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_9.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_10.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_11.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT observation FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\observation\observation_12.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
 
 
 -- Medication table
-DROP TABLE IF EXISTS medication
+DROP TABLE IF EXISTS medication;
 CREATE TABLE medication (
       nhs_prescribing_agency nvarchar(50)
     , emis_drug_guid nvarchar(50)
@@ -203,7 +203,7 @@ CREATE TABLE medication (
     , nhs_prescription_type varchar(50)
     , uom nvarchar(50)
     , uom_dmd nvarchar(50)
-	)
+	);
 
 BULK INSERT medication
 FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication.csv'  
@@ -213,23 +213,23 @@ WITH (
 	, ROWTERMINATOR = '0x0a'
 	, KEEPNULLS
 	, FORMAT = 'csv'
-	)
+	);
 
 -- SELECT count(*) FROM medication --15096 - TOTAL 275772
 --  SELECT TOP 10 * FROM medication
 
 -- Adding the rest of the medication files
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_2.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_3.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_4.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_5.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_6.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_7.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_8.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_9.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_10.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_11.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_12.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_13.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_14.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
-BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_15.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv')
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_2.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_3.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_4.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_5.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_6.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_7.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_8.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_9.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_10.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_11.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_12.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_13.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_14.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
+BULK INSERT medication FROM 'C:\Users\yumar\Desktop\Projects\20240524_sql_emis\data\medication\medication_15.csv'  WITH (FIRSTROW = 1, FIELDTERMINATOR = ',', ROWTERMINATOR = '0x0a', KEEPNULLS, FORMAT = 'csv');
