@@ -187,7 +187,7 @@ WHERE (med.snomed_concept_id in ('129490002'  -- Formoterol Fumarate
 		OR med.emis_original_term LIKE '%Indacaterol%'
 		OR med.emis_original_term LIKE '%Olodaterol%'
 		)
-		AND recorded_date <= (DATEADD(year, -2, GETDATE())) ;
+		AND recorded_date >= (DATEADD(year, -30, GETDATE())) ;
 
 -- SELECT * FROM #all_patients_with_meds;  -- 6 patients
 
